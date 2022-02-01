@@ -5,6 +5,8 @@
 
 <script>
 import Nav from "./components/Nav.vue";
+
+import { ref, onMounted } from "vue";
 export default {
   components: {
     Nav,
