@@ -10,18 +10,18 @@
       justify-between
       mt-4
       w-full
-      mx-3
+      mx-4
       md:w-80 md:m-1
     "
   >
     <div class="flex space-x-6 items-center">
       <i
-        class="fas fa-money-bill-alt text-lg"
-        :class="trends_direction ? 'text-green-300' : 'text-yellow-300'"
+        class="text-lg"
+        :class="[trends_direction ? 'text-green-300' : 'text-yellow-300', icon]"
       ></i>
       <div>
-        <p class="font-semibold text-base">{{ Metrics }}</p>
         <p class="font-semibold text-xs text-gray-400">{{ Description }}</p>
+        <p class="font-semibold text-base">{{ Metrics }}</p>
       </div>
     </div>
 
@@ -30,7 +30,7 @@
         class="rounded-md p-2 flex items-center"
         :class="trends_direction ? 'bg-green-200' : 'bg-yellow-200'"
       >
-        <p class="text-white-600 font-semibold text-xs">{{ Comparison }}</p>
+        <p class="text-white-600 font-semibold text-xs">MoM {{ Comparison }}</p>
       </div>
     </div>
   </div>
@@ -42,6 +42,7 @@ export default {
     Metrics: Number,
     Description: String,
     Comparison: Number,
+    icon: String,
   },
   setup(props) {
     var trends_direction = reactive(null);
