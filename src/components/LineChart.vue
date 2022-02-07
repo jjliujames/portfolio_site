@@ -2,7 +2,7 @@
   <div
     :id="chartname"
     style="width: 100%; height: 600px"
-    class="mt-5 mx-auto px-7"
+    class="mt-5 mx-auto sm:px-5"
   ></div>
 </template>
 <script>
@@ -55,21 +55,21 @@ export default {
 
         option = {
           // Make gradient line here
+          backgroundColor: "white",
           visualMap: [
             {
               show: false,
               type: "continuous",
               seriesIndex: 0,
-              min: 0,
-              max: 400,
+              min: 500000,
+              max: 1000000,
             },
             {
               show: false,
               type: "continuous",
               seriesIndex: 1,
-              dimension: 0,
-              min: 0,
-              max: dateList.length - 1,
+              min: 3000,
+              max: 8000,
             },
           ],
           title: [
@@ -96,10 +96,18 @@ export default {
             },
           ],
           yAxis: [
-            { axisLine: { onZero: false } },
+            {
+              axisLine: { onZero: false },
+              nameTextStyle: {
+                fontSize: 9,
+              },
+            },
             {
               gridIndex: 1,
               axisLine: { onZero: false },
+              nameTextStyle: {
+                fontSize: 9,
+              },
             },
           ],
           grid: [
@@ -115,6 +123,7 @@ export default {
               type: "line",
               showSymbol: false,
               data: valueList,
+              areaStyle: {},
             },
             {
               type: "line",
@@ -122,12 +131,13 @@ export default {
               data: InventoryList,
               xAxisIndex: 1,
               yAxisIndex: 1,
+              areaStyle: {},
             },
           ],
         };
         var chartDom = document.getElementById(props.chartname);
         console.log(props.chartname);
-        var myChart = echarts.init(chartDom, "dark");
+        var myChart = echarts.init(chartDom);
         option && myChart.setOption(option);
         props.chartContainer.push(myChart);
       }
