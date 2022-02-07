@@ -5,6 +5,7 @@
   </p>
   <div class="p-4 my-3 flex"><City /></div>
   <p>{{ selected_city }}</p>
+
   <div class="w-full">
     <div class="flex justify-center w-full mb-5">
       <div
@@ -40,6 +41,7 @@
         icon="fas fa-calculator"
       />
     </div>
+    <div><LineChart :chartname="all" :chartdata="all_data_chart['All']" /></div>
   </div>
 
   <div class="w-full mt-5">
@@ -130,6 +132,7 @@ import { ref, computed, watch } from "vue";
 import axios from "axios";
 import City from "../components/Selection_list.vue";
 import { useStore } from "vuex";
+import LineChart from "../components/LineChart.vue";
 
 export default defineComponent({
   name: "Home",
@@ -138,6 +141,7 @@ export default defineComponent({
     Card,
     Card2,
     City,
+    LineChart,
   },
   setup() {
     const store = useStore();
@@ -147,10 +151,23 @@ export default defineComponent({
     const all_data = ref({});
     const condo_data = ref({});
     const house_data = ref({});
+    const all_data_chart = ref({});
     var address = computed(() => {
       return "https://fastapi-house.herokuapp.com/?city=" + city.value;
     });
-
+    const returnvalue = (x, type) => {
+      var array = [];
+      x.forEach((each) => {
+        if (each["type"] === type) {
+          array.push([
+            each["avg_price"],
+            each["listing_volume"],
+            each["timestamp"],
+          ]);
+        }
+      });
+      return array;
+    };
     const fetchdata = (url) => {
       return axios.get(url).then((res) => {
         updated_dt.value = res.data["update_dt"];
@@ -158,6 +175,9 @@ export default defineComponent({
         all_data.value = res.data["today"]["All"];
         condo_data.value = res.data["today"]["Condo"];
         house_data.value = res.data["today"]["House"];
+        all_data_chart.value["All"] = returnvalue(res.data["all"], "All");
+        all_data_chart.value["House"] = returnvalue(res.data["all"], "House");
+        all_data_chart.value["Condo"] = returnvalue(res.data["all"], "Condo");
       });
     };
     watch(
@@ -177,6 +197,7 @@ export default defineComponent({
       condo_data,
       house_data,
       address,
+      all_data_chart,
     };
   },
 });
