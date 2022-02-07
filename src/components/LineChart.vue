@@ -1,8 +1,8 @@
 <template>
   <div
     :id="chartname"
-    style="width: 650px; height: 600px"
-    class="mt-5 mx-auto"
+    style="width: 100%; height: 600px"
+    class="mt-5 mx-auto px-7"
   ></div>
 </template>
 <script>
@@ -29,7 +29,7 @@ echarts.use([
   UniversalTransition,
 ]);
 export default {
-  props: ["chartdata", "chartname"],
+  props: ["chartdata", "chartname", "chartContainer"],
   setup(props) {
     var option;
     // prettier-ignore
@@ -96,9 +96,10 @@ export default {
             },
           ],
           yAxis: [
-            {},
+            { axisLine: { onZero: false } },
             {
               gridIndex: 1,
+              axisLine: { onZero: false },
             },
           ],
           grid: [
@@ -128,6 +129,7 @@ export default {
         console.log(props.chartname);
         var myChart = echarts.init(chartDom, "dark");
         option && myChart.setOption(option);
+        props.chartContainer.push(myChart);
       }
     );
   },

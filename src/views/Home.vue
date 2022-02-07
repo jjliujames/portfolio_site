@@ -41,7 +41,13 @@
         icon="fas fa-calculator"
       />
     </div>
-    <div><LineChart chartname="all" :chartdata="all_data_chart['All']" /></div>
+    <div>
+      <LineChart
+        chartname="all"
+        :chartdata="all_data_chart['All']"
+        :chartContainer="chart"
+      />
+    </div>
   </div>
 
   <div class="w-full mt-5">
@@ -82,7 +88,11 @@
       />
     </div>
     <div>
-      <LineChart chartname="House" :chartdata="all_data_chart['House']" />
+      <LineChart
+        chartname="House"
+        :chartdata="all_data_chart['House']"
+        :chartContainer="chart"
+      />
     </div>
   </div>
 
@@ -123,7 +133,11 @@
         icon="fas fa-calculator"
       />
     </div>
-    <LineChart chartname="Condo" :chartdata="all_data_chart['Condo']" />
+    <LineChart
+      chartname="Condo"
+      :chartdata="all_data_chart['Condo']"
+      :chartContainer="chart"
+    />
   </div>
   <div class="h-5"></div>
 </template>
@@ -151,7 +165,7 @@ export default defineComponent({
   setup() {
     const store = useStore();
     const city = computed(() => store.state.selected_city);
-
+    const chart = ref([]);
     const updated_dt = ref(null);
     const all_data = ref({});
     const condo_data = ref({});
@@ -175,6 +189,7 @@ export default defineComponent({
     };
     const fetchdata = (url) => {
       return axios.get(url).then((res) => {
+        chart.value = [];
         updated_dt.value = res.data["update_dt"];
         console.log(res.data);
         all_data.value = res.data["today"]["All"];
@@ -194,6 +209,15 @@ export default defineComponent({
       }
     );
     fetchdata(address.value);
+
+    const resizechart = () => {
+      chart.value.forEach((element) => {
+        element.resize();
+      });
+    };
+
+    window.onresize = resizechart;
+
     return {
       fetchdata,
       updated_dt,
@@ -203,6 +227,7 @@ export default defineComponent({
       house_data,
       address,
       all_data_chart,
+      chart,
     };
   },
 });

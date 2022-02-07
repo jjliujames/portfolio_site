@@ -25,9 +25,9 @@
         h-full
       "
     >
-      <p class="font-bold text-sm uppercase mt-4">TDI GI MAP 2.0</p>
-      <p class="text-2xl font-bold">Your dashboard to highway</p>
-      <p class="text-1xl mb-10 leading-none">Monthly updated</p>
+      <p class="font-bold text-sm uppercase mt-4">Data Driven Insights</p>
+      <p class="text-2xl font-bold">Quebec Housing Trends</p>
+      <p class="text-1xl mb-10 leading-none">Daily updated</p>
       <a
         href="#"
         class="
