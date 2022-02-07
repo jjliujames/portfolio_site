@@ -86,16 +86,18 @@ export default {
       selectedOption.value = option;
       isOptionsExpanded.value = false;
       store.commit("setCity", option);
-
       // store.setCity("option");
     };
 
     const getlist = () => {
       axios.get("https://fastapi-house.herokuapp.com/city").then((res) => {
+        console.log("city list:", res.data);
         options.value = res.data;
       });
     };
     getlist();
+
+    console.log(1, options.value);
     return { isOptionsExpanded, selectedOption, options, setOption, getlist };
   },
 };

@@ -41,7 +41,7 @@
         icon="fas fa-calculator"
       />
     </div>
-    <div><LineChart :chartname="all" :chartdata="all_data_chart['All']" /></div>
+    <div><LineChart chartname="all" :chartdata="all_data_chart['All']" /></div>
   </div>
 
   <div class="w-full mt-5">
@@ -80,6 +80,9 @@
         "
         icon="fas fa-calculator"
       />
+    </div>
+    <div>
+      <LineChart chartname="House" :chartdata="all_data_chart['House']" />
     </div>
   </div>
 
@@ -120,7 +123,9 @@
         icon="fas fa-calculator"
       />
     </div>
+    <LineChart chartname="Condo" :chartdata="all_data_chart['Condo']" />
   </div>
+  <div class="h-5"></div>
 </template>
 
 <script>
