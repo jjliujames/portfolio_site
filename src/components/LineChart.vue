@@ -2,7 +2,7 @@
   <div
     :id="chartname"
     style="width: 100%; height: 600px"
-    class="mt-5 mx-auto sm:px-5"
+    class="mt-5 mx-auto sm:px-5 rounded-lg"
   ></div>
 </template>
 <script>
@@ -89,25 +89,33 @@ export default {
           xAxis: [
             {
               data: dateList,
+              axisLine: { onZero: false },
             },
             {
               data: dateList,
               gridIndex: 1,
+              axisLine: { onZero: false },
             },
           ],
           yAxis: [
             {
-              axisLine: { onZero: false },
               nameTextStyle: {
                 fontSize: 9,
               },
+              splitLine: {
+                show: false,
+              },
+              scale: true,
             },
             {
               gridIndex: 1,
-              axisLine: { onZero: false },
               nameTextStyle: {
                 fontSize: 9,
               },
+              splitLine: {
+                show: false,
+              },
+              scale: true,
             },
           ],
           grid: [
@@ -123,7 +131,18 @@ export default {
               type: "line",
               showSymbol: false,
               data: valueList,
-              areaStyle: {},
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: "rgb(255, 70, 131)",
+                  },
+                  {
+                    offset: 1,
+                    color: "rgb(255, 158, 68)",
+                  },
+                ]),
+              },
             },
             {
               type: "line",
@@ -131,7 +150,18 @@ export default {
               data: InventoryList,
               xAxisIndex: 1,
               yAxisIndex: 1,
-              areaStyle: {},
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 0.9, [
+                  {
+                    offset: 0,
+                    color: "rgb(255, 70, 131)",
+                  },
+                  {
+                    offset: 1,
+                    color: "rgb(255, 158, 68)",
+                  },
+                ]),
+              },
             },
           ],
         };

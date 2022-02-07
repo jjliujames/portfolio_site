@@ -7,7 +7,7 @@
   <p>{{ selected_city }}</p>
 
   <div class="w-full">
-    <div class="flex justify-center w-full mb-5">
+    <div class="flex justify-center w-full mb-5 rounded-lg">
       <div
         class="
           grid
