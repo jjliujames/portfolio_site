@@ -121,12 +121,12 @@ export default {
           grid: [
             {
               bottom: "60%",
-              left: "11%",
+              left: "14%",
               right: "2%",
             },
             {
               top: "60%",
-              left: "11%",
+              left: "14%",
               right: "2%",
             },
           ],
