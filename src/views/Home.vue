@@ -17,7 +17,8 @@
           rounded-box
           place-items-center
           text-white
-          w-1/2
+          md:w-1/2
+          w-full
           justify-center
         "
       >
@@ -63,7 +64,8 @@
           rounded-box
           place-items-center
           text-white
-          w-1/2
+          md:w-1/2
+          w-full
         "
       >
         Total Housing Trends <span class="font-bold ml-2"> ({{ city }}) </span>
@@ -110,7 +112,8 @@
           rounded-box
           place-items-center
           text-white
-          w-1/2
+          md:w-1/2
+          w-full
         "
       >
         Total Condo Trends <span class="font-bold ml-2"> ({{ city }}) </span>

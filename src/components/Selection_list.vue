@@ -90,10 +90,16 @@ export default {
     };
 
     const getlist = () => {
-      axios.get("https://fastapi-house.herokuapp.com/city").then((res) => {
-        console.log("city list:", res.data);
-        options.value = res.data;
-      });
+      axios
+        .get("https://fastapi-house.herokuapp.com/city", {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
+        })
+        .then((res) => {
+          console.log("city list:", res.data);
+          options.value = res.data;
+        });
     };
     getlist();
 
