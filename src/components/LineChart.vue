@@ -122,12 +122,12 @@ export default {
             {
               bottom: "60%",
               left: "14%",
-              right: "2%",
+              right: "3%",
             },
             {
               top: "60%",
               left: "14%",
-              right: "2%",
+              right: "3%",
             },
           ],
           series: [
