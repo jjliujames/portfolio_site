@@ -10,7 +10,7 @@
     <div class="flex justify-center w-full mb-5 rounded-lg">
       <div
         class="
-          grid
+          flex
           h-10
           card
           bg-green-800
@@ -18,9 +18,10 @@
           place-items-center
           text-white
           w-1/2
+          justify-center
         "
       >
-        Total Property Trends
+        Total Property Trends <span class="font-bold ml-2"> ({{ city }}) </span>
       </div>
     </div>
     <div class="flex flex-wrap justify-center">
@@ -54,7 +55,8 @@
     <div class="flex justify-center w-full mb-5">
       <div
         class="
-          grid
+          flex
+          justify-center
           h-10
           card
           bg-green-800
@@ -64,7 +66,7 @@
           w-1/2
         "
       >
-        Total Housing Trends
+        Total Housing Trends <span class="font-bold ml-2"> ({{ city }}) </span>
       </div>
     </div>
     <div class="flex flex-wrap justify-center">
@@ -100,7 +102,8 @@
     <div class="flex justify-center w-full mb-5">
       <div
         class="
-          grid
+          flex
+          justify-center
           h-10
           card
           bg-green-800
@@ -110,7 +113,7 @@
           w-1/2
         "
       >
-        Total Condo Trends
+        Total Condo Trends <span class="font-bold ml-2"> ({{ city }}) </span>
       </div>
     </div>
     <div class="flex flex-wrap justify-center">
