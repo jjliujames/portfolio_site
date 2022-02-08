@@ -177,7 +177,11 @@ export default defineComponent({
     const returnvalue = (x, type) => {
       var array = [];
       x.forEach((each) => {
-        if (each["type"] === type) {
+        if (
+          (each["type"] === type) &
+          (each["timestamp"] <= "2021-09-28" ||
+            each["timestamp"] >= "2021-12-11")
+        ) {
           array.push([
             each["avg_price"],
             each["listing_volume"],
