@@ -9,6 +9,7 @@
       content-center
       align-middle
     "
+    v-if="loading_status"
   >
     <h1 class="text-4xl text-white">Loading Data</h1>
     <img
