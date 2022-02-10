@@ -12,6 +12,11 @@
     v-if="loading_status"
   >
     <h1 class="text-4xl text-white">Loading Data</h1>
+    <img
+      src="https://img.icons8.com/color/240/000000/spinner--v4.png"
+      alt=""
+      class="content-center align-middle m-auto"
+    />
   </div>
   <Banner />
   <p class="text-white font-bold text-left ml-6">
