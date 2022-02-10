@@ -2,7 +2,7 @@
   <div
     class="
       flex
-      absolute
+      fixed
       min-h-screen
       w-screen
       bg-indigo-800 bg-opacity-50
