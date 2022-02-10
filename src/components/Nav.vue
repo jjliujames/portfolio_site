@@ -1,23 +1,3 @@
-Ready for Tailwind CSS v3.0
-Learn more →
-Tailwind UI
-by the creators of Tailwind CSS
-
-Documentation
-Pricing & FAQ
-Sign in
-Navbars
-Application UI
-Navigation
-Simple dark with menu button on left
-REQUIRES JS
-
-Preview
-
-Code
-
-Vue
-Copy code
 <!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <Disclosure as="nav" class="bg-green-800" v-slot="{ open }">
@@ -75,6 +55,7 @@ Copy code
                   'px-3 py-2 rounded-md text-sm font-medium',
                 ]"
                 :aria-current="item.current ? 'page' : undefined"
+                @click="change(item.name)"
                 >{{ item.name }}</a
               >
             </div>
@@ -164,7 +145,7 @@ Copy code
                       active ? 'bg-gray-100' : '',
                       'block px-4 py-2 text-sm text-gray-700',
                     ]"
-                    >Your Profile</a
+                    >Profile</a
                   >
                 </MenuItem>
                 <MenuItem v-slot="{ active }">
@@ -208,6 +189,7 @@ Copy code
             'block px-3 py-2 rounded-md text-base font-medium',
           ]"
           :aria-current="item.current ? 'page' : undefined"
+          @click="change(item.name)"
           >{{ item.name }}</DisclosureButton
         >
       </div>
@@ -225,14 +207,13 @@ import {
   MenuItem,
   MenuItems,
 } from "@headlessui/vue";
-import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/outline";
-
-const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  // { name: "Team", href: "#", current: false },
-  // { name: "Admin", href: "#", current: false },
-  // { name: "Form", href: "#", current: false },
-];
+import {
+  BellIcon,
+  MenuIcon,
+  TrendingUpIcon,
+  XIcon,
+} from "@heroicons/vue/outline";
+import { reactive } from "vue";
 
 export default {
   components: {
@@ -248,8 +229,27 @@ export default {
     XIcon,
   },
   setup() {
+    const navigation = reactive([
+      { name: "Dashboard", href: "#", current: true },
+      // { name: "Team", href: "#", current: false },
+      // { name: "Admin", href: "#", current: false },
+      // { name: "Form", href: "#", current: false },
+    ]);
+    const change = (i) => {
+      navigation.forEach((element) => {
+        console.log(i);
+        if (element.name == i) {
+          console.log(element.name);
+          element.current = true;
+        } else {
+          element.current = false;
+        }
+        console.log(navigation);
+      });
+    };
     return {
       navigation,
+      change,
     };
   },
 };

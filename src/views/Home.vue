@@ -1,8 +1,24 @@
 <template>
+  <div
+    class="
+      flex
+      absolute
+      min-h-screen
+      w-screen
+      bg-indigo-800 bg-opacity-50
+      z-50
+      justify-center
+      items-center
+    "
+    v-if="loading_status"
+  >
+    <h1 class="text-7xl text-white">Loading Data</h1>
+  </div>
   <Banner />
   <p class="text-white font-bold text-left ml-6">
     Updated as of {{ updated_dt }}
   </p>
+
   <div class="p-4 my-3 flex"><City /></div>
   <p>{{ selected_city }}</p>
 
@@ -169,6 +185,7 @@ export default defineComponent({
     LineChart,
   },
   setup() {
+    const loading_status = ref(true);
     const store = useStore();
     const city = computed(() => store.state.selected_city);
     const chart = ref([]);
@@ -177,6 +194,7 @@ export default defineComponent({
     const condo_data = ref({});
     const house_data = ref({});
     const all_data_chart = ref({});
+    console.log(loading_status.value);
     var address = computed(() => {
       return "https://fastapi-house.herokuapp.com/?city=" + city.value;
     });
@@ -198,23 +216,26 @@ export default defineComponent({
       return array;
     };
     const fetchdata = (url) => {
+      loading_status.value = true;
       return axios.get(url).then((res) => {
         chart.value = [];
         updated_dt.value = res.data["update_dt"];
-        console.log(res.data);
+        // console.log(res.data);
         all_data.value = res.data["today"]["All"];
         condo_data.value = res.data["today"]["Condo"];
         house_data.value = res.data["today"]["House"];
         all_data_chart.value["All"] = returnvalue(res.data["all"], "All");
         all_data_chart.value["House"] = returnvalue(res.data["all"], "House");
         all_data_chart.value["Condo"] = returnvalue(res.data["all"], "Condo");
+        loading_status.value = false;
+        console.log(123, loading_status.value);
       });
     };
     watch(
       () => store.state.selected_city,
       () => {
-        console.log(city.value);
-        console.log(address.value);
+        // console.log(city.value);
+        // console.log(address.value);
         fetchdata(address.value);
       }
     );
@@ -227,7 +248,7 @@ export default defineComponent({
     };
 
     window.onresize = resizechart;
-
+    console.log(loading_status.value);
     return {
       fetchdata,
       updated_dt,
@@ -238,6 +259,7 @@ export default defineComponent({
       address,
       all_data_chart,
       chart,
+      loading_status,
     };
   },
 });
