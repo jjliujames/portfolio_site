@@ -1,18 +1,21 @@
 <template>
   <div
     class="
-      flex
       fixed
       min-h-screen
       w-screen
       bg-indigo-800 bg-opacity-50
       z-50
-      justify-center
-      items-center
+      content-center
+      align-middle
     "
-    v-if="loading_status"
   >
-    <h1 class="text-7xl text-white">Loading Data</h1>
+    <h1 class="text-4xl text-white">Loading Data</h1>
+    <img
+      src="../assets/on-the.gif"
+      alt=""
+      class="content-center align-middle m-auto"
+    />
   </div>
   <Banner />
   <p class="text-white font-bold text-left ml-6">
